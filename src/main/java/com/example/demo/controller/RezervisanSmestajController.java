@@ -20,15 +20,15 @@ public class RezervisanSmestajController {
 
     @PostMapping
     public Rezervacija createRezervacija(@RequestBody Rezervacija rezervacija){
+
         return rezervisanSmestajService.addRezervacija(rezervacija);
     }
 
     @PostMapping(value = "/confirmReservation")
     public Rezervacija confirmReservationByAgent(@RequestBody Rezervacija rezervacija){
-         rezervisanSmestajService.setConfirmed(rezervacija);
-         return rezervisanSmestajService.addRezervacija(rezervacija);
-
-
+         Rezervacija r = rezervisanSmestajService.findByIdRezervacije(rezervacija);
+         rezervisanSmestajService.setConfirmed(r);
+         return rezervisanSmestajService.addRezervacija(r);
 
     }
 

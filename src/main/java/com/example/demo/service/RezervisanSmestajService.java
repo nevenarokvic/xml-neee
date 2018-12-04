@@ -19,7 +19,7 @@ public class RezervisanSmestajService {
     }
 
     public Rezervacija addRezervacija(Rezervacija rezervacija){
-       return rezervisanSmestajRepository.save(rezervacija);
+           return rezervisanSmestajRepository.save(rezervacija);
     }
 
     public Rezervacija findByIdRezervacije(Rezervacija rezervacija){ return rezervisanSmestajRepository.getOne(rezervacija.getId());}
@@ -33,5 +33,6 @@ public class RezervisanSmestajService {
         r.setConfirmed(true);
         return r;
     }
+
 
 }

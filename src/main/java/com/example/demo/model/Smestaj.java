@@ -22,6 +22,7 @@ public class Smestaj implements Serializable {
     //triger polje koje se racuna svaki put kada korisnik ostavi/promeni ocenu
     float ocena;
 
+
     @ManyToOne
     User agent;
 
