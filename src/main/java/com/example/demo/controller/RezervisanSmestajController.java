@@ -1,9 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Rezervacija;
+import com.example.demo.model.Smestaj;
+import com.example.demo.model.User;
 import com.example.demo.service.RezervisanSmestajService;
+import com.example.demo.service.SmestajService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import sun.management.Agent;
 
 import java.util.List;
 
@@ -12,15 +17,20 @@ import java.util.List;
 public class RezervisanSmestajController {
 
     private RezervisanSmestajService rezervisanSmestajService;
+    private SmestajService smestajService;
 
     @Autowired
-    public  RezervisanSmestajController(RezervisanSmestajService rezervisanSmestajService){
+    public  RezervisanSmestajController(RezervisanSmestajService rezervisanSmestajService,SmestajService smestajService){
         this.rezervisanSmestajService = rezervisanSmestajService;
+        this.smestajService = smestajService;
     }
 
     @PostMapping
     public Rezervacija createRezervacija(@RequestBody Rezervacija rezervacija){
-
+        Smestaj smestaj = smestajService.findBySmestajId(rezervacija.getSmestaj().getId());
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        rezervacija.setAgent(authUser);
+        rezervacija.setSmestaj(smestaj);
         return rezervisanSmestajService.addRezervacija(rezervacija);
     }
 

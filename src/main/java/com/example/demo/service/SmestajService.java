@@ -21,4 +21,14 @@ public class SmestajService {
         return smestajRepository.save(smestaj);
     }
 
+    public Smestaj findBySmestajId(long id){ return smestajRepository.findById(id);}
+
+    public boolean smestajExists(long id){
+        boolean exists = false;
+        if( smestajRepository.findById(id) !=null){
+            exists = true;
+        }
+        return exists;
+    }
+
 }

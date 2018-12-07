@@ -16,7 +16,9 @@ public class Rezervacija implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    long idSmestaja;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "smestaj_id", nullable = false)
+    Smestaj smestaj;
     Date startDate;
     Date endDate;
     boolean confirmed = false;
@@ -32,15 +34,6 @@ public class Rezervacija implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getIdSmestaja() {
-        return idSmestaja;
-
-    }
-
-    public void setIdSmestaja(long idSmestaja) {
-        this.idSmestaja = idSmestaja;
     }
 
     public Date getStartDate() {
@@ -68,7 +61,7 @@ public class Rezervacija implements Serializable {
     public String toString() {
         return "Rezervacija{" +
                 "id=" + id +
-                ", idSmestaja=" + idSmestaja +
+                ", idSmestaja=" + smestaj.getId() +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", confirmed=" + confirmed +
@@ -82,4 +75,12 @@ public class Rezervacija implements Serializable {
         this.agent = agent;
     }
 
+
+    public Smestaj getSmestaj() {
+        return smestaj;
+    }
+
+    public void setSmestaj(Smestaj smestaj) {
+        this.smestaj = smestaj;
+    }
 }

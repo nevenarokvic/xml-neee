@@ -18,7 +18,6 @@ public class Smestaj implements Serializable {
     String tip;
     String kategorija;
     String lokacija;
-    float cena;
     //triger polje koje se racuna svaki put kada korisnik ostavi/promeni ocenu
     float ocena;
 
@@ -59,12 +58,6 @@ public class Smestaj implements Serializable {
     }
     public void setKategorija(String kategorija) {
         this.kategorija = kategorija;
-    }
-    public float getCena() {
-        return cena;
-    }
-    public void setCena(float cena) {
-        this.cena = cena;
     }
     public float getOcena() {
         return ocena;
