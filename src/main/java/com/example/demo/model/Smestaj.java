@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class Smestaj implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String naziv;
     String opis;
@@ -26,6 +25,16 @@ public class Smestaj implements Serializable {
     User agent;
 
     public Smestaj(){}
+
+    public Smestaj(String naziv, String opis, String usluge, String tip, String kategorija, String lokacija, float ocena) {
+        this.naziv = naziv;
+        this.opis = opis;
+        this.usluge = usluge;
+        this.tip = tip;
+        this.kategorija = kategorija;
+        this.lokacija = lokacija;
+        this.ocena = ocena;
+    }
 
     public User getAgent() {
         return agent;

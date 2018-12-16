@@ -47,7 +47,7 @@ public class RezervisanSmestajController {
         return rezervisanSmestajService.findById(id);
     }
 
-    @GetMapping(path = "/getAll")
+    @GetMapping("/getAll")
     public List<Rezervacija> getAll() {
         return rezervisanSmestajService.findAll();
     }

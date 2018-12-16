@@ -38,23 +38,24 @@ public class SmestajPhotoController {
         for (SmestajPhoto photo : photos) {
             String format = fileService.getImageFormat(photo.getPath());
             String imageContent = fileService.getImageAsBase64String(photo.getPath());
-            encodedImages.add(new ImageData(format,imageContent));
+            encodedImages.add(new ImageData(format, imageContent));
         }
         return encodedImages;
     }
 
     @PostMapping(path = "/{smestajId}/upload")
-    public boolean uploadFiles(@PathVariable("smestajId") long id, @RequestParam("photos") MultipartFile[] files) {
+    public boolean uploadFiles(@PathVariable("smestajId") long id, @RequestParam("photos") MultipartFile files) {
         boolean isUploadSuccess = fileService.uploadFiles(files);
         if (isUploadSuccess) {  //ako je upload uspjesan, sacuvaj putanje fajlova
-            List<String> fNames = Arrays.asList(files).stream()
-                    .map(el -> el.getOriginalFilename())
-                    .collect(Collectors.toList());
+            String fNames = files.getOriginalFilename();
+            try {
 
-            smestajPhotoService.saveSmestajPhotos(id,fNames);
-
+                smestajPhotoService.saveSmestajPhotos(id, fileService.getImageAsBase64String(fNames));
 
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return isUploadSuccess;
     }

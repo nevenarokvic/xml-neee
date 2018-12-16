@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Message;
-import com.example.demo.model.User;
 import com.example.demo.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -15,8 +15,8 @@ public class FileService {
     public static final String uploadingDir = System.getProperty("user.dir") + "\\photos\\";
 
 
-    public boolean uploadFiles(MultipartFile[] files) {
-        for(MultipartFile file : files) {
+    public boolean uploadFiles(MultipartFile file) {
+     //   for(MultipartFile file : files) {
             File f = new File(uploadingDir + file.getOriginalFilename());
             try {
                 file.transferTo(f);
@@ -24,7 +24,7 @@ public class FileService {
                 e.printStackTrace();
                 return false;
             }
-        }
+
         return true;
     }
 
