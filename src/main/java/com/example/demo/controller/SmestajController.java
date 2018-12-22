@@ -12,6 +12,9 @@ import schema.wsdl.CreateSmestajIdReponse;
 import schema.wsdl.CreateSmestajResponse;
 import schema.wsdl.SmestajWS;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/smestaj")
 @CrossOrigin
@@ -51,4 +54,13 @@ public class SmestajController {
         return smestajService.addSmestaj(smestaj);
 
     }
+
+ //   @GetMapping("/getAllSmestaj")
+ //   public ArrayList<Smestaj> getAll(){
+       // List<Smestaj> smestajList = new ArrayList<>();
+
+
+
+ //  }
+
 }

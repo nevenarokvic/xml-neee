@@ -37,6 +37,7 @@ public class SmestajMapper {
         smestajWS.setOpis(smestaj.getOpis());
         smestajWS.setTip(smestaj.getTip());
         smestajWS.setUsluge(smestaj.getUsluge());
+        smestajWS.setId(smestaj.getId());
 
         return  smestajWS;
     }
