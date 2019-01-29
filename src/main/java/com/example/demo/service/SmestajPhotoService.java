@@ -26,16 +26,21 @@ public class SmestajPhotoService {
 
     }
 
-    public void saveSmestajPhotos(Long id,String paths){
+    public void savePhoto(Long id,String path){
        // for(String path: paths){
             SmestajPhoto s = new SmestajPhoto();
             s.setSmestaj(smestajRepository.getOne(id));
-            s.setPath(paths);
+            s.setPath(path);
             smestajPhotoRepository.save(s);
+
       //  }
     }
     public void saveSmestajPhoto(SmestajPhoto photo){
         smestajPhotoRepository.save(photo);
     }
 
+    public void deletePhoto(Long id){
+        SmestajPhoto s = smestajPhotoRepository.getOne(id);
+        smestajPhotoRepository.delete(s);
+    }
 }

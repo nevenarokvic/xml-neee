@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.model.dto.UserDTO;
 import com.example.demo.service.UserService;
+import com.example.demo.ws.WSClient;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +23,17 @@ public class AuthenticationController {
     private UserService userService;
 
     @Autowired
+    WSClient wsClient;
+
+    @Autowired
     public AuthenticationController(UserService userService){
         this.userService = userService;
+
     }
 
     @PostMapping
     public ResponseEntity<User> login(@RequestBody UserDTO userDto) throws NotFoundException {
         User user = userService.findByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());
-
         Collection<? extends GrantedAuthority> authorities;
         try {
             authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(user.getAuthorities());
@@ -39,6 +43,9 @@ public class AuthenticationController {
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), authorities);
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        wsClient.syncSmestaji();
+       // wsClient.syncPhotos();
 
         return ResponseEntity.ok(user);
     }

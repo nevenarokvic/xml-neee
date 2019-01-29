@@ -7,3 +7,5 @@ VALUES('admin', '$2a$10$SjpVAO.vRWA2KJdfg/LKiOYBlGaFaoBJAzTQ60sb5FPOCpbu9BtKa', 
 INSERT INTO user(username, password, authorities)
 VALUES('agent', '$2a$10$SjpVAO.vRWA2KJdfg/LKiOYBlGaFaoBJAzTQ60sb5FPOCpbu9BtKa', 'AGENT');
 
+
+

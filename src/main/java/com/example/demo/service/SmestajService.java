@@ -30,5 +30,13 @@ public class SmestajService {
         }
         return exists;
     }
+    public List<Smestaj> addAllSmestaj(List<Smestaj> smestajs) {
+
+        return smestajRepository.saveAll(smestajs);
+    }
+    public List<Smestaj> findSmestajByAgentId(Long id)
+    {
+         return smestajRepository.findByAgentId(id);
+    }
 
 }
