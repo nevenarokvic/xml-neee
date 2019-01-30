@@ -34,13 +34,11 @@ public class SmestajPhotoController {
 
     @GetMapping("/get/{smestajId}")
     @ResponseBody
-    public List<ImageData> getPhotosFromSmestaj(@PathVariable("smestajId") long id) throws IOException {
+    public List<String> getPhotosFromSmestaj(@PathVariable("smestajId") long id) throws IOException {
         List<SmestajPhoto> photos = smestajPhotoService.getPhotosBySmestaj(id);
-        List<ImageData> encodedImages = new ArrayList<>();
+        List<String> encodedImages = new ArrayList<>();
         for (SmestajPhoto photo : photos) {
-            String format = fileService.getImageFormat(photo.getPath());
-            String imageContent = fileService.getImageAsBase64String(photo.getPath());
-            encodedImages.add(new ImageData(format, imageContent));
+            encodedImages.add(photo.getPath());
         }
         return encodedImages;
     }
@@ -50,7 +48,6 @@ public class SmestajPhotoController {
         boolean isUploadSuccess = fileService.uploadFiles(file);
         if (isUploadSuccess) {  //ako je upload uspesan----->cuva se putanja
             String fName = file.getOriginalFilename();
-            try {
 
                 String putanja = fileService.getImageAsBase64String(fName);
                 smestajPhotoService.savePhoto(id,putanja);
@@ -59,10 +56,8 @@ public class SmestajPhotoController {
                 photoWS.setSmestajId(id);
                 wsClient.createPhoto(photoWS);
 
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        }
+
         return isUploadSuccess;
     }
 

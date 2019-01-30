@@ -34,4 +34,22 @@ public class SmestajPricingController {
         return isAdded;
     }
 
+
+    @GetMapping("/{smestajId}")
+    public SmestajPricing findPricingBySmestajId(@PathVariable("smestajId") long id){
+        return smestajPricingService.getBySmestajId(id);
+    }
+
+    @DeleteMapping("/{smestajId}")
+    public void deletePricing(@PathVariable("smestajId") long id){
+         smestajPricingService.deletePricing(id);
+    }
+
+    @PutMapping("/{smestajId}")
+    public SmestajPricing modifyPricing(@PathVariable("smestajId") long id, @RequestBody SmestajPricing smestajPricing){
+        SmestajPricing sp = smestajPricingService.getBySmestajId(id);
+        sp.setDTO(smestajPricing);
+        return smestajPricingService.savePricing(sp);
+    }
+
 }

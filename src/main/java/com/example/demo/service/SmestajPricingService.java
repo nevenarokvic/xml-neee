@@ -29,8 +29,10 @@ public class SmestajPricingService {
         return smestajPricingRepository.save(smestajPricing);
     }
 
-    public void deletePricing(SmestajPricing smestajPricing) {
-        smestajPricingRepository.delete(smestajPricing);
+    public void deletePricing(Long id) {
+        SmestajPricing sp = smestajPricingRepository.findBySmestajId(id);
+        smestajPricingRepository.delete(sp);
+
     }
 
 

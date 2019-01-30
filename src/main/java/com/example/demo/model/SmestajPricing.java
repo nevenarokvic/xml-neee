@@ -81,6 +81,21 @@ public class SmestajPricing implements Serializable {
         this.smestaj = smestaj;
     }
 
+    public void setDTO(SmestajPricing pricingDTO){
+        this.januar = pricingDTO.getJanuar();
+        this.februar = pricingDTO.getFebruar();
+        this.mart = pricingDTO.getMart();
+        this.april = pricingDTO.getApril();
+        this.maj = pricingDTO.getMaj();
+        this.jun = pricingDTO.getJun();
+        this.jul = pricingDTO.getJul();
+        this.avgust = pricingDTO.getAvgust();
+        this.septembar = pricingDTO.getSeptembar();
+        this.oktobar = pricingDTO.getOktobar();
+        this.novembar = pricingDTO.getNovembar();
+        this.decembar = pricingDTO.getDecembar();
+    }
+
     public int getJanuar() {
         return januar;
     }

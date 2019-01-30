@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.mapper.SmestajMapper;
-import com.example.demo.mapper.SmestajMapperS2SWS;
 import com.example.demo.model.Smestaj;
 import com.example.demo.model.User;
 import com.example.demo.service.SmestajService;
@@ -11,10 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import schema.wsdl.CreateSmestajIdReponse;
 import schema.wsdl.CreateSmestajResponse;
-import schema.wsdl.GetSmestajForUserResponse;
 import schema.wsdl.SmestajWS;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,11 +54,16 @@ public class SmestajController {
 
     }
 
-    @GetMapping(value = "/getAllSmestaj")
+    @GetMapping(value = "/getAll")//sve smestaje tog agenta
     public List<Smestaj> getAll() {
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return smestajService.findSmestajByAgentId(authUser.getId());
 
 
+    }
+
+    @GetMapping(value = "/{smestajId}")
+    public Smestaj getOneById(@PathVariable("smestajId") long id){
+        return smestajService.findBySmestajId(id);
     }
 }

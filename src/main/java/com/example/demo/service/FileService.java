@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import lombok.var;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,14 +30,17 @@ public class FileService {
     }
 
 
-    public String getImageAsBase64String(String fileName) throws IOException {
+    public String getImageAsBase64String(String fileName) {
         Path pathToFile = Paths.get(uploadingDir + fileName);
-        byte[] imageBytes = Files.readAllBytes(pathToFile);
+        byte[] imageBytes = new byte[0];
+        try {
+            imageBytes = Files.readAllBytes(pathToFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return Base64.getEncoder().encodeToString(imageBytes);
     }
 
 
-    public String getImageFormat(String fileName) {
-        return fileName.substring(fileName.indexOf(".") + 1);
-    }
+
 }
