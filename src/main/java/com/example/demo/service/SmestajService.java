@@ -39,4 +39,7 @@ public class SmestajService {
          return smestajRepository.findByAgentId(id);
     }
 
+    public void deleteSmestaj(Long id){
+        smestajRepository.deleteById(id);
+    }
 }

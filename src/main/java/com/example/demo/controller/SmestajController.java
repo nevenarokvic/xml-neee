@@ -36,7 +36,7 @@ public class SmestajController {
         smestaj.setId(smestajIdReponse.getId());
         SmestajWS smestajWS = new SmestajWS();
         SmestajMapper smestajMapper = new SmestajMapper(smestaj, smestajWS);
-        CreateSmestajResponse smestajResponse = wsClient.createSmestaj(smestajMapper.namapiraj());
+        wsClient.createSmestaj(smestajMapper.namapiraj());
 
         // smestaj.setAgent();
         return smestajService.addSmestaj(smestaj);
@@ -49,7 +49,7 @@ public class SmestajController {
         SmestajWS smestajWS = new SmestajWS();
         smestajWS.setId(smestaj.getId());
         SmestajMapper smestajMapper = new SmestajMapper(smestaj, smestajWS);
-        CreateSmestajResponse smestajResponse = wsClient.createSmestaj(smestajMapper.namapiraj());
+        wsClient.createSmestaj(smestajMapper.namapiraj());
         return smestajService.addSmestaj(smestaj);
 
     }
@@ -63,7 +63,17 @@ public class SmestajController {
     }
 
     @GetMapping(value = "/{smestajId}")
-    public Smestaj getOneById(@PathVariable("smestajId") long id){
+    public Smestaj getOneById(@PathVariable("smestajId") long id)
+    {
         return smestajService.findBySmestajId(id);
     }
+
+
+    @DeleteMapping(value = "/{smestajId}")
+    public void deleteById(@PathVariable("smestajId") long id){
+        smestajService.deleteSmestaj(id);
+
+
+    }
+
 }
