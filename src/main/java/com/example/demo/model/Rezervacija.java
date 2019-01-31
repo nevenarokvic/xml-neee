@@ -23,7 +23,7 @@ public class Rezervacija implements Serializable {
     Date endDate;
     boolean confirmed = false;
     @ManyToOne
-    User agent;///treba da bude user koji vrsti rez!!
+    User user;///treba da bude user koji vrsti rez!!
 
 
     public Rezervacija(){}
@@ -67,12 +67,12 @@ public class Rezervacija implements Serializable {
                 ", confirmed=" + confirmed +
                 '}';
     }
-    public User getAgent() {
-        return agent;
+    public User getUser() {
+        return user;
     }
 
-    public void setAgent(User agent) {
-        this.agent = agent;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 

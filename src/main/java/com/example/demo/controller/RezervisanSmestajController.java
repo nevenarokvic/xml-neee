@@ -29,7 +29,7 @@ public class RezervisanSmestajController {
     public Rezervacija createRezervacija(@RequestBody Rezervacija rezervacija){
         Smestaj smestaj = smestajService.findBySmestajId(rezervacija.getSmestaj().getId());
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        rezervacija.setAgent(authUser);
+        rezervacija.setUser(authUser);
         rezervacija.setSmestaj(smestaj);
         return rezervisanSmestajService.addRezervacija(rezervacija);
     }
