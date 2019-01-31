@@ -18,7 +18,7 @@ public class MessageController  {
         this.messageService = messageService;
     }
     //sve poruke za agenta(inbox)
-    @GetMapping("/all")
+    @GetMapping
     public List<Message> getAllMessages(){
         return messageService.getAllMessages();
 

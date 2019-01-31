@@ -47,9 +47,11 @@ public class RezervisanSmestajController {
         return rezervisanSmestajService.findById(id);
     }
 
-    @GetMapping("/getAll")
-    public List<Rezervacija> getAll() {
-        return rezervisanSmestajService.findAll();
-    }
+  //  @GetMapping("/getAll")
+  //  public List<Rezervacija> getAll()
+  //  {
+        //treba da vrati sve rezervacije smestaja ciji je vlasnik ulogovani agent
+        //return rezervisanSmestajService.findAll();
+  //  }
 
 }

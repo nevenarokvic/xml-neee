@@ -23,7 +23,7 @@ public class Rezervacija implements Serializable {
     Date endDate;
     boolean confirmed = false;
     @ManyToOne
-    User agent;
+    User agent;///treba da bude user koji vrsti rez!!
 
 
     public Rezervacija(){}

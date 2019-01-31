@@ -36,7 +36,7 @@ public class MessageService {
         return messageRepository.findByRezervacija_Id(rezervacijaId);
     }
     public List<Message> getAllMessages(){
-        return messageRepository.findByAgentFalse();
+        return messageRepository.findByAgentFalse();//povuci ce se iz glavne baze sve poruke za ulogovanog agenta
     }
 
 
